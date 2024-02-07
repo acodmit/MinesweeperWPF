@@ -1,0 +1,92 @@
+﻿<Window x:Class="MinesweeperWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinesweeperWPF"
+        mc:Ignorable="d"
+        Title="Minesweeper" Icon="Icons\mine.ico" MinHeight="460
+        " MinWidth="460" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Border Background="{DynamicResource WindowBackground}">
+        <DockPanel Background="Transparent">
+            <Menu DockPanel.Dock="Top" 
+                  Background="Transparent" 
+                  Foreground="Black">
+                <MenuItem Header="_Game" Background="Transparent">
+                    <MenuItem Header="_New" Background="Transparent"/>
+                    <MenuItem Header="_Pause" Background="Transparent"/>
+                    <Separator/>
+                    <MenuItem Header="_Exit"
+                              Click="MenuItem_Exit_Click"
+                              Background="Transparent"/>
+                </MenuItem>
+                <MenuItem Header="_Scores"
+                          Click="MenuItem_Scores_Click"
+                          Background="Transparent">
+                </MenuItem>
+                <MenuItem Header="_Settings"
+                          Background="Transparent">
+                    <MenuItem Header="_Level">
+                        <RadioButton x:Name="RadioBtnEasy"
+                                     Click="MenuItem_Level_Checked"
+                                     Content="Easy"
+                                     IsChecked="True"/>
+                        <RadioButton x:Name="RadioBtnMedium"
+                                     Click="MenuItem_Level_Checked"
+                                     Content="Medium"/>
+                        <RadioButton x:Name="RadioBtnHard"
+                                     Click="MenuItem_Level_Checked"
+                                     Content="Hard" />
+                    </MenuItem>
+                    <MenuItem x:Name="SoundMenuItem"
+                              Header="_Sound"
+                              IsCheckable="True"
+                              IsChecked="{Binding Path=Sound}"/>
+                </MenuItem>
+            </Menu>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="100" Height="0.3*"/>
+                    <RowDefinition MinHeight="100" Height="0.3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- First Row: Minesweeper Label -->
+                <Label Content="Minesweeper"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+                <!-- Second Row: New Game Button -->
+                <Button Content="New Game"
+                        FontSize="16"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,100,0"
+                        Width="120"
+                        Height="40"
+                        Foreground="White"
+                        Click="Button_NewGame_Click"
+                        Grid.Row="1"
+                        Style="{StaticResource ButtonTheme}"/>
+                
+                <Label x:Name="TimeLabel"
+                       Content="{Binding TimeLabelContent}"
+                       FontSize="16"
+                       Foreground="White"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="100,0,0,0"
+                       Grid.Row="1"/>
+
+                <!-- Third Row: Empty for now -->
+                <Grid Grid.Row="2" x:Name="MinesweeperGrid">
+                    <!-- The content of this grid will be added dynamically -->
+                </Grid>
+                
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>
